@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Models\PendaftaranPasien;
 use Illuminate\Http\Request;
+use App\Models\PendaftaranPasien;
+
 
 class AuthController extends Controller
 {
-    //
-
+    // Menampilkan form pendaftaran
     public function show_pendaftaran()
     {
+        $pasien = session('pendaftaran_pasien');
+
+        if ($pasien) {
+            return redirect()->route('registrasi');
+        }
         return view('pendaftaran-pasien');
     }
 
+    // Proses pendaftaran pasien
     public function daftar(Request $request)
     {
 
+        // Validasi input
         $request->validate([
             'nik' => 'required|unique:pendaftaran_pasiens|string',
             'nama_lengkap' => 'required|string|max:255',
@@ -36,5 +42,18 @@ class AuthController extends Controller
             'jenis_kelamin' => $request->jenis_kelamin,
             'no_telepon' => $request->no_telepon,
         ]);
+
+        // Simpan data ke session
+        session(['pendaftaran_pasien' => $pasien]);
+
+        // Redirect ke halaman registrasi pasien dengan pesan sukses
+        return redirect()->route('registrasi')->with('success', 'Pendaftaran berhasil! Silakan lanjut ke registrasi.');
+    }
+
+    // Logout
+    public function logout()
+    {
+        auth()->logout();
+        return redirect()->route('pendaftaran')->with('success', 'Anda telah logout.');
     }
 }

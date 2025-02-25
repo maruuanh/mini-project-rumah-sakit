@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('no_rekam_medis');
             $table->foreign('no_rekam_medis')->references('no_rekam_medis')->on('pendaftaran_pasiens')->onDelete('cascade');
             $table->foreignId('jadwal_praktik_dokters_id')->constrained('jadwal_praktik_dokters')->onDelete('cascade');
+            $table->time('jam_registrasi');
             $table->timestamps();
         });
     }

@@ -50,5 +50,26 @@ class JadwalPraktikDokterSeeder extends Seeder
             'jam_mulai' => '12:00:00',
             'jam_selesai' => '14:00:00',
         ]);
+        JadwalPraktikDokter::create([
+            'dokter_id' => $dokter1->id,
+            'jam_mulai' => '12:00:00',
+            'jam_selesai' => '14:00:00',
+        ]);
+        JadwalPraktikDokter::create([
+            'dokter_id' => $dokter2->id,
+            'jam_mulai' => '12:00:00',
+            'jam_selesai' => '14:00:00',
+        ]);
+        JadwalPraktikDokter::create([
+            'dokter_id' => $dokter3->id,
+            'jam_mulai' => '13:00:00',
+            'jam_selesai' => '15:00:00',
+        ]);
+
+        JadwalPraktikDokter::create([
+            'dokter_id' => $dokter4->id,
+            'jam_mulai' => '14:00:00',
+            'jam_selesai' => '16:00:00',
+        ]);
     }
 }

@@ -15,6 +15,6 @@ class Poliklinik extends Model
 
     public function dokter()
     {
-        return $this->hasMany(Dokter::class);
+        return $this->hasMany(Dokter::class, 'poliklinik_id');
     }
 }

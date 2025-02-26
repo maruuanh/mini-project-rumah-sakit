@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PendaftaranPasien;
+use Illuminate\Support\Facades\Auth;
 
 
 class AuthController extends Controller
@@ -14,7 +15,7 @@ class AuthController extends Controller
         $pasien = session('pendaftaran_pasien');
 
         if ($pasien) {
-            return redirect()->route('registrasi');
+            return redirect()->route('registrasi', compact('pasien'));
         }
         return view('pendaftaran-pasien');
     }
@@ -32,7 +33,6 @@ class AuthController extends Controller
             'tanggal_lahir' => 'required|date',
             'no_telepon' => 'required|integer',
         ]);
-
         // Simpan data ke database (UUID dibuat otomatis di model)
         $pasien = PendaftaranPasien::create([
             'nik' => $request->nik,
@@ -53,7 +53,8 @@ class AuthController extends Controller
     // Logout
     public function logout()
     {
-        auth()->logout();
+        Auth::logout();
+        session()->flush();
         return redirect()->route('pendaftaran')->with('success', 'Anda telah logout.');
     }
 }

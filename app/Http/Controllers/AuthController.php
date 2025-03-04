@@ -10,9 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class AuthController extends Controller
 {
     // Menampilkan form pendaftaran
-    public function show_pendaftaran()
+    public function show_pendaftaran(Request $request)
     {
-        $pasien = session('pendaftaran_pasien');
+        $pasien = $request->session()->get('pendaftaran_pasien');
 
         if ($pasien) {
             return redirect()->route('registrasi', compact('pasien'));
@@ -24,16 +24,15 @@ class AuthController extends Controller
     public function daftar(Request $request)
     {
 
-        // Validasi input
         $request->validate([
             'nik' => 'required|unique:pendaftaran_pasiens|string',
             'nama_lengkap' => 'required|string|max:255',
             'alamat' => 'required|string',
             'jenis_kelamin' => 'required|string|in:Laki-laki,Perempuan',
             'tanggal_lahir' => 'required|date',
-            'no_telepon' => 'required|integer',
+            'no_telepon' => 'required|string|regex:/^[0-9]+$/|max:15',
         ]);
-        // Simpan data ke database (UUID dibuat otomatis di model)
+
         $pasien = PendaftaranPasien::create([
             'nik' => $request->nik,
             'nama_lengkap' => $request->nama_lengkap,
@@ -43,11 +42,10 @@ class AuthController extends Controller
             'no_telepon' => $request->no_telepon,
         ]);
 
-        // Simpan data ke session
-        session(['pendaftaran_pasien' => $pasien]);
-
-        // Redirect ke halaman registrasi pasien dengan pesan sukses
-        return redirect()->route('registrasi')->with('success', 'Pendaftaran berhasil! Silakan lanjut ke registrasi.');
+        if ($pasien) {
+            $request->session()->put('pendaftaran_pasien', $pasien);
+            return redirect()->route('registrasi')->with('success', 'Pendaftaran berhasil! Silakan lanjut ke registrasi.');
+        }
     }
 
     // Logout

@@ -5,9 +5,8 @@ namespace Database\Seeders;
 use App\Models\Dokter;
 use App\Models\JadwalPraktikDokter;
 use App\Models\Poliklinik;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Carbon;
 
 class JadwalPraktikDokterSeeder extends Seeder
 {
@@ -29,47 +28,47 @@ class JadwalPraktikDokterSeeder extends Seeder
 
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter1->id,
-            'jam_mulai' => '08:00:00',
-            'jam_selesai' => '12:00:00',
+            'jam_mulai' => Carbon::createFromTime(8, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(12, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB,
         ]);
 
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter2->id,
-            'jam_mulai' => '08:00:00',
-            'jam_selesai' => '12:00:00',
+            'jam_mulai' => Carbon::createFromTime(8, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(12, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
 
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter3->id,
-            'jam_mulai' => '08:00:00',
-            'jam_selesai' => '12:00:00',
+            'jam_mulai' => Carbon::createFromTime(10, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(13, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
 
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter4->id,
-            'jam_mulai' => '12:00:00',
-            'jam_selesai' => '14:00:00',
+            'jam_mulai' => Carbon::createFromTime(12, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(14, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter1->id,
-            'jam_mulai' => '12:00:00',
-            'jam_selesai' => '14:00:00',
+            'jam_mulai' => Carbon::createFromTime(12, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(14, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter2->id,
-            'jam_mulai' => '12:00:00',
-            'jam_selesai' => '14:00:00',
+            'jam_mulai' => Carbon::createFromTime(13, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(15, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter3->id,
-            'jam_mulai' => '13:00:00',
-            'jam_selesai' => '15:00:00',
+            'jam_mulai' => Carbon::createFromTime(13, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(15, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
 
         JadwalPraktikDokter::create([
             'dokter_id' => $dokter4->id,
-            'jam_mulai' => '14:00:00',
-            'jam_selesai' => '16:00:00',
+            'jam_mulai' => Carbon::createFromTime(14, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 08:00 WIB
+            'jam_selesai' => Carbon::createFromTime(16, 0, 0, 'Asia/Jakarta')->toDateTimeString(), // 12:00 WIB
         ]);
     }
 }

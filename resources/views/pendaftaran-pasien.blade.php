@@ -3,40 +3,19 @@
 @section('title', 'Form Pendaftaran Pasien')
 
 @section('content')
-    {{-- <form action="{{ route('pendaftaran.daftar') }}" method="POST">
-        @csrf
-        <label for="nik">NIK:</label>
-        <input type="text" id="nik" name="nik" required><br><br>
 
-        <label for="nama_lengkap">Nama:</label>
-        <input type="text" id="nama_lengkap" name="nama_lengkap" required><br><br>
-        
-        <label for="alamat">Alamat:</label>
-        <input type="text" id="alamat" name="alamat" required><br><br>
-
-        <label for="jenis_kelamin">Jenis Kelamin:</label>
-        <select id="jenis_kelamin" name="jenis_kelamin" required>
-            <option value="Laki-laki">Laki-laki</option>
-            <option value="Perempuan">Perempuan</option>
-        </select><br><br>
-
-        <label for="tanggal_lahir">Tanggal Lahir:</label>
-        <input type="date" id="tanggal_lahir" name="tanggal_lahir" required><br><br>
-
-        <label for="no_telepon">No Telepon:</label>
-        <input type="number" id="no_telepon" name="no_telepon" required><br><br>
-
-        <button type="submit">Daftar</button>
-    </form> --}}
     <form class="p-8 border border-gray-300 rounded-md shadow-sm" action="{{ route('pendaftaran.daftar') }}" class="space-y-6"
         method="POST">
         @csrf
         <div>
             <label for="no_rekam_medis" class="block text-sm/6 font-medium text-gray-900">NIK:</label>
             <div class="mt-2">
-                <input type="text" id="nik" name="nik" required
+                <input type="text" id="nik" name="nik" required value="{{ old('nik') }}"
                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-200 sm:text-sm/6">
             </div>
+            @error('nik')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mt-2">
@@ -44,9 +23,12 @@
                 <label for="nama_lengkap" class="block text-sm/6 font-medium text-gray-900">Nama Lengkap:</label>
             </div>
             <div class="mt-2">
-                <input type="text" name="nama_lengkap" id="nama_lengkap" required
+                <input type="text" name="nama_lengkap" id="nama_lengkap" required value="{{ old('nama_lengkap') }}"
                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-200 sm:text-sm/6">
             </div>
+            @error('nama_lengkap')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mt-2">
@@ -54,9 +36,12 @@
                 <label for="alamat" class="block text-sm/6 font-medium text-gray-900">Alamat:</label>
             </div>
             <div class="mt-2">
-                <input type="text" name="alamat" id="alamat"
+                <input type="text" name="alamat" id="alamat" value="{{ old('alamat') }}"
                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-200 sm:text-sm/6">
             </div>
+            @error('alamat')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mt-2">
@@ -65,10 +50,16 @@
             </div>
             <div class="mt-2">
                 <select id="jenis_kelamin" name="jenis_kelamin" required>
-                    <option value="Laki-laki">Laki-laki</option>
-                    <option value="Perempuan">Perempuan</option>
+                    <option value="Laki-laki" value="{{ old('jenis_kelamin') == 'Laki-laki' ? 'selected' : '' }}">Laki-laki
+                    </option>
+                    <option value="Perempuan" value="{{ old('jenis_kelamin') == 'Perempuan' ? 'selected' : '' }}">Perempuan
+                    </option>
                 </select>
             </div>
+
+            @error('jenis_kelamin')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mt-2">
@@ -76,9 +67,12 @@
                 <label for="tanggal_lahir" class="block text-sm/6 font-medium text-gray-900">Tanggal Lahir:</label>
             </div>
             <div class="mt-2">
-                <input type="date" name="tanggal_lahir" id="tanggal_lahir" required
+                <input type="date" name="tanggal_lahir" id="tanggal_lahir" required value="{{ old('tanggal_lahir') }}"
                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-200 sm:text-sm/6">
             </div>
+            @error('tanggal_lahir')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="mt-2">
@@ -86,9 +80,12 @@
                 <label for="no_telepon" class="block text-sm/6 font-medium text-gray-900">No. Telepon:</label>
             </div>
             <div class="mt-2">
-                <input type="text" name="no_telepon" id="no_telepon" required
+                <input type="text" name="no_telepon" id="no_telepon" required value="{{ old('no_telepon') }}"
                     class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 border border-gray-200 sm:text-sm/6">
             </div>
+            @error('no_telepon')
+                <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
+            @enderror
         </div>
 
 
